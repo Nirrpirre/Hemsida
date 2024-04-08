@@ -1,0 +1,33 @@
+*{
+    margin: 0vh;
+    padding: 0vh;
+}
+
+
+
+#menu{
+    font-size: larger;
+    margin-left: 50vw;
+    color: white;
+}
+
+header{
+    display: flex;
+    background-color: black;
+    align-items: center;
+    height: 6vh;
+}
+
+.item{
+    color: white;
+    margin-left: 12vh;
+}
+
+.container{
+    margin-left: 10px;
+}
+
+img{
+    width: 500px;
+    height: 250px;
+}

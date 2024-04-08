@@ -17,9 +17,12 @@ function displayNews(data) {
         let node = document.createElement("div");
         node.innerHTML = `
         <p>Author:      ${article.author}</p>
-        <p>Description: ${article.description}</p>
+        <p>Content: ${article.content}</p>
         <p>Published:   ${article.publishedAt}</p>`;
         resultDiv.appendChild(node);
+        let img = document.createElement("img")
+        img.src = `${article.urlToImage}`
+        resultDiv.appendChild(img)
     })
 }
 

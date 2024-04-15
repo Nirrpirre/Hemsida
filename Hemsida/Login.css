@@ -1,0 +1,39 @@
+body {
+  background-color: black;
+}
+
+.container {
+  display: flex;
+}
+form {
+    width: 350px;
+    position: absolute;
+    left: 70%;
+    top: 30%;
+}
+div {
+  /* margin-left: 70%;
+  margin-top: 35%; */
+  border: 1px solid;
+  border-radius: 20px;
+  padding: 10px;
+  width: 200px;
+  display: flex;
+  justify-content: space-evenly;
+  cursor: pointer;
+  background-color: white;
+  margin-top: 10%;
+}
+
+input {
+  padding: 10px;
+  border: 1px solid;
+  border-radius: 20px;
+  margin: 20px;
+}
+
+img{
+    width: 40%;
+    margin-top: 20%;
+    margin-left: 15%;
+}

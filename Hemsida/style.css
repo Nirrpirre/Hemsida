@@ -6,12 +6,14 @@
 
 
 #menu{
+    position: absolute;
     font-size: larger;
-    margin-left: 50vw;
+    margin-left: 200vh;
     color: white;
 }
 
 header{
+    position: relative;
     display: flex;
     background-color: black;
     align-items: center;
@@ -21,6 +23,7 @@ header{
 .item{
     color: white;
     margin-left: 12vh;
+    cursor: pointer;
 }
 
 .container{
@@ -31,3 +34,19 @@ img{
     width: 500px;
     height: 250px;
 }
+
+.logo{
+    width: 200px;
+    height: 6vh;
+}
+
+#textbar{
+    margin-left: 55vh;
+    width: 15vh;
+}
+
+.article-description {
+    overflow: auto;
+    max-height: 200px;
+}
+

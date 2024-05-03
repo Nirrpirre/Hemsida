@@ -27,9 +27,6 @@ function displayNews(data) {
         let img = document.createElement("img")
         img.src = `${article.urlToImage}`
         resultDiv.appendChild(img)
-        node.addEventListener("click", () => {
-            window.open(`article.html?url=${encodeURIComponent(article.url)}`);
-        })
     })
 }
 

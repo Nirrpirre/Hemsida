@@ -41,12 +41,24 @@ img{
 }
 
 #textbar{
-    margin-left: 55vh;
+    margin-left: 170vh;
     width: 15vh;
+    position: absolute;
 }
 
 .article-description {
     overflow: auto;
     max-height: 200px;
+}
+
+
+#log_out{
+    font-size: large;
+    margin-left: 65vh;
+}
+
+a{
+    color: white;
+    text-decoration: none;
 }
 

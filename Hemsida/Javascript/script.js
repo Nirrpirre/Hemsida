@@ -1,16 +1,20 @@
-async function news(searchQuery, category) {
+async function news(searchQuery, category, source) {
     let apiKey = "25061337eed148e7bd9aed9c34ec64a1"
     let categoryString = ""
+    let sourceString = ""
     if (category) {
-        categoryString = " AND " + category
+        categoryString = "&category=" + category;
     }
-    var url = `https://newsapi.org/v2/everything?q=${searchQuery}${categoryString}&apiKey=${apiKey}`;
-    let response = await fetch(url)
-    let json = await response.json()
-    return json
+    if (source) {
+        sourceString = "&sources=" + source;
+    }
+    var url = `https://newsapi.org/v2/everything?q=${searchQuery}${categoryString}${sourceString}&apiKey=${apiKey}`;
+    let response = await fetch(url);
+    let json = await response.json();
+    return json;
 }
 
-function displayNews(data, category) {
+function displayNews(data) {
     console.log(data);
     let resultDiv = document.getElementById("result");
     resultDiv.innerHTML = '';
@@ -18,17 +22,18 @@ function displayNews(data, category) {
     let articles = data.articles;
 
     articles.forEach((article) => {
-        // Check if author is null or img src is invalid
         if (article.author !== null && article.urlToImage !== null && article.urlToImage !== "") {
-            let node = document.createElement("div");
-            node.innerHTML = `
-            <p>Author: ${article.author}</p>
-            <p>Description: ${article.description}</p>
-            <p>Published: ${article.publishedAt}</p>`;
-            resultDiv.appendChild(node);
+            let articleDiv = document.createElement("div");
+            articleDiv.classList.add("article");
+            articleDiv.innerHTML = `
+                <p>Author: ${article.author}</p>
+                <p>Description: ${article.description}</p>
+                <p>Published: ${article.publishedAt}</p>
+                <p>Source: ${article.source.name}</p>`;
             let img = document.createElement("img");
             img.src = `${article.urlToImage}`;
-            resultDiv.appendChild(img);
+            articleDiv.appendChild(img);
+            resultDiv.appendChild(articleDiv);
         }
     });
 }
@@ -63,6 +68,19 @@ document.getElementById("Home").addEventListener("click", ()=>{
     window.location.href="index.html"
 })
 
+
+document.createElement("div").addEventListener("click", async()=> {
+    const searchQuery = document.getElementById("textbar").value;
+
+    if (searchQuery === "") {
+        const data = await news(`${source.id}`);
+        displayNews(data);
+    }
+    else {
+        const data = await news(searchQuery, `${source.id}`);
+        displayNews(data);
+    }
+})
 
 document.getElementById("Politics").addEventListener("click", async ()=>{
     const searchQuery = document.getElementById("textbar").value;

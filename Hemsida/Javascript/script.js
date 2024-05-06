@@ -10,7 +10,7 @@ async function news(searchQuery, category) {
     return json
 }
 
-function displayNews(data) {
+function displayNews(data, category) {
     console.log(data);
     let resultDiv = document.getElementById("result");
     resultDiv.innerHTML = '';
@@ -18,23 +18,39 @@ function displayNews(data) {
     let articles = data.articles;
 
     articles.forEach((article) => {
-        let node = document.createElement("div");
-        node.innerHTML = `
-        <p>Author:      ${article.author}</p>
-        <p>description: ${article.description}</p>
-        <p>Published:   ${article.publishedAt}</p>`;
-        resultDiv.appendChild(node);
-        let img = document.createElement("img")
-        img.src = `${article.urlToImage}`
-        resultDiv.appendChild(img)
-    })
+        // Check if author is null or img src is invalid
+        if (article.author !== null && article.urlToImage !== null && article.urlToImage !== "") {
+            let node = document.createElement("div");
+            node.innerHTML = `
+            <p>Author: ${article.author}</p>
+            <p>Description: ${article.description}</p>
+            <p>Published: ${article.publishedAt}</p>`;
+            resultDiv.appendChild(node);
+            let img = document.createElement("img");
+            img.src = `${article.urlToImage}`;
+            resultDiv.appendChild(img);
+        }
+    });
 }
+
 
 async function getAndDisplay() {
     const searchQuery = document.getElementById("textbar").value;
     const data = await news(searchQuery);
     displayNews(data);
 }
+
+
+let menu = document.getElementById("menu")
+let menu_icon = document.getElementById("menu-icon")
+menu_icon.addEventListener("click", ()=>{
+    if (menu.style.display == "block") {
+        menu.style.display = "none"
+    }else{
+        menu.style.display = "block"
+    }
+})
+
 
 document.getElementById("textbar").addEventListener("keypress", function(event) {
     if (event.key === 'Enter') {
@@ -57,21 +73,6 @@ document.getElementById("Politics").addEventListener("click", async ()=>{
     } 
     else {
         const data = await news(searchQuery, "politics");
-        displayNews(data);
-
-    }
-})
-
-
-document.getElementById("Buisness").addEventListener("click", async ()=>{
-    const searchQuery = document.getElementById("textbar").value;
-
-    if (searchQuery === "") {
-        const data = await news("Buisness");
-        displayNews(data);
-    } 
-    else {
-        const data = await news(searchQuery, "Buisness");
         displayNews(data);
 
     }

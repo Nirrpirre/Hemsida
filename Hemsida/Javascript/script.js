@@ -23,19 +23,21 @@ function displayNews(data) {
 
     articles.forEach((article) => {
         if (article.author !== null && article.urlToImage !== null && article.urlToImage !== "") {
-            let articleDiv = document.createElement("div");
-            articleDiv.classList.add("article");
+            let articleDiv = document.createElement("article");
             articleDiv.innerHTML = `
+                <h2>${article.title}</h2>
                 <p>Author: ${article.author}</p>
                 <p>Description: ${article.description}</p>
                 <p>Published: ${article.publishedAt}</p>
                 <p>Source: ${article.source.name}</p>`;
             let img = document.createElement("img");
             img.src = `${article.urlToImage}`;
+            img.alt = "article poster"
             articleDiv.appendChild(img);
             resultDiv.appendChild(articleDiv);
         }
     });
+    
 }
 
 
@@ -63,10 +65,6 @@ document.getElementById("textbar").addEventListener("keypress", function(event) 
     }
 });
 
-
-document.getElementById("Home").addEventListener("click", ()=>{
-    window.location.href="index.html"
-})
 
 
 document.createElement("div").addEventListener("click", async()=> {

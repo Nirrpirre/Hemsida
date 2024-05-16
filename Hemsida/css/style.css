@@ -1,5 +1,3 @@
-/* Existing CSS */
-
 * {
   margin: 0vh;
   padding: 0vh;
@@ -145,22 +143,16 @@ article p a {
 .source-link:hover {
   color: red;
 }
-/* CSS for mobile devices */
-/* CSS for mobile devices */
-/* CSS for mobile devices */
 @media screen and (max-width: 700px) {
-  /* Reset default padding and margin */
   * {
     margin: 0;
     padding: 0;
   }
 
-  /* Ensure proper scaling for mobile devices */
   body {
     font-size: 16px;
   }
 
-  /* Header styles */
   #header {
     width: 430px;
   }
@@ -178,14 +170,13 @@ article p a {
   }
 
   .item {
-    margin: 14px; /* Increase margin for items */
+    margin: 14px;
     font-size: small;
     margin-top: 30px;
   }
 
-  /* Adjust search bar and menu icon */
   #textbar {
-    display: none !important; /* Hide search bar on mobile */
+    display: none !important;
   }
 
   #menu-icon {
@@ -198,18 +189,17 @@ article p a {
     position: absolute;
     top: 50px;
     right: 10px;
-    width: 200px; /* Adjust menu width */
+    width: 200px;
     background-color: #fff;
     border-radius: 5px;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-    display: none; /* Initially hide menu */
+    display: none;
   }
 
   .menu {
     padding: 10px;
   }
 
-  /* Adjust main content */
   .container {
     padding: 10px;
   }
@@ -219,23 +209,21 @@ article p a {
   }
 
   article {
-    margin: 10px auto; /* Center articles horizontally */
-    padding: 10px; /* Adjust padding for articles */
-    width: calc(
-      50% - 20px
-    ); /* Make articles evenly spaced, considering margin */
-    max-width: 300px; /* Limit maximum width of articles */
-    text-align: center; /* Center text within articles */
-    border: 1px solid #ccc; /* Add border for better visibility */
-    border-radius: 10px; /* Add border radius for rounded corners */
+    margin: 10px auto;
+    padding: 10px;
+    width: calc(50% - 20px);
+    max-width: 300px;
+    text-align: center;
+    border: 1px solid #ccc;
+    border-radius: 10px;
   }
 
   article img {
-    max-width: 100%; /* Make images responsive within articles */
-    height: auto; /* Maintain aspect ratio of images */
+    max-width: 100%;
+    height: auto;
   }
 
   article p {
-    font-size: 10px; /* Adjust font size for paragraph text */
+    font-size: 10px;
   }
 }

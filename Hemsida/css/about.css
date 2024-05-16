@@ -2,7 +2,6 @@ body {
   font-family: Arial, sans-serif;
   margin: 0;
   padding: 0;
-  overflow-y: scroll;
 }
 
 header {
@@ -57,4 +56,15 @@ footer {
   color: #fff;
   text-align: center;
   padding: 10px 0;
+}
+
+@media screen and (max-width: 700px) {
+  .social-links li {
+    margin-right: 5px;
+  }
+
+  .social-links a {
+    font-size: 12px;
+    padding: 3px 8px;
+  }
 }

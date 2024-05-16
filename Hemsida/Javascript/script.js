@@ -1,17 +1,22 @@
 async function news(searchQuery, category, source) {
-    let apiKey = "25061337eed148e7bd9aed9c34ec64a1"
-    let categoryString = ""
-    let sourceString = ""
+    let apiKey = "25061337eed148e7bd9aed9c34ec64a1";
+    let url = `https://newsapi.org/v2/everything?q=${searchQuery}&apiKey=${apiKey}`;
+    
     if (category) {
-        categoryString = "&category=" + category;
+        url += `&category=${category}`;
     }
     if (source) {
-        sourceString = "&sources=" + source;
+        url += `&sources=${source}`;
     }
-    var url = `https://newsapi.org/v2/everything?q=${searchQuery}${categoryString}${sourceString}&apiKey=${apiKey}`;
-    let response = await fetch(url);
-    let json = await response.json();
-    return json;
+    
+    try {
+        let response = await fetch(url);
+        let json = await response.json();
+        return json;
+    } catch (error) {
+        console.error("Error fetching news:", error);
+        return { articles: [] };
+    }
 }
 
 function displayNews(data) {
@@ -29,34 +34,49 @@ function displayNews(data) {
                 <p>Author: ${article.author}</p>
                 <p>Description: ${article.description}</p>
                 <p>Published: ${article.publishedAt}</p>
-                <p>Source: ${article.source.name}</p>`;
+                <p>Source: <a class="source-link" href="index.html?source=${article.source.id}">${article.source.name}</a></p>`;
             let img = document.createElement("img");
             img.src = `${article.urlToImage}`;
-            img.alt = "article poster"
+            img.alt = "article poster";
             articleDiv.appendChild(img);
             resultDiv.appendChild(articleDiv);
         }
     });
-    
 }
-
 
 async function getAndDisplay() {
     const searchQuery = document.getElementById("textbar").value;
-    const data = await news(searchQuery);
+    const searchParams = new URLSearchParams(window.location.search);
+    const source = searchParams.get("source");
+    const data = await news(searchQuery, null, source);
     displayNews(data);
 }
 
-
-let menu = document.getElementById("menu")
-let menu_icon = document.getElementById("menu-icon")
-menu_icon.addEventListener("click", ()=>{
+let menu = document.getElementById("menu");
+let menu_icon = document.getElementById("menu-icon");
+menu_icon.addEventListener("click", () => {
     if (menu.style.display == "block") {
-        menu.style.display = "none"
-    }else{
-        menu.style.display = "block"
+        menu.style.display = "none";
+    } else {
+        menu.style.display = "block";
     }
-})
+});
+
+function toggleSearchBar() {
+    const searchBar = document.getElementById("textbar");
+    const searchIcon = document.getElementById("search-icon");
+
+    if (searchBar.style.display === "block") {
+        searchBar.style.display = "none";
+    } else {
+        searchBar.style.display = "block";
+        searchBar.focus();
+        searchIcon.style.display = "none";
+    }
+}
+
+document.getElementById("search-icon").addEventListener("click", toggleSearchBar);
+
 
 
 document.getElementById("textbar").addEventListener("keypress", function(event) {
@@ -65,60 +85,44 @@ document.getElementById("textbar").addEventListener("keypress", function(event) 
     }
 });
 
+let searchParams = new URLSearchParams(window.location.search);
+let source = searchParams.get("source");
+if (source) {
+    getAndDisplay();
+}
 
-
-document.createElement("div").addEventListener("click", async()=> {
-    const searchQuery = document.getElementById("textbar").value;
-
-    if (searchQuery === "") {
-        const data = await news(`${source.id}`);
-        displayNews(data);
-    }
-    else {
-        const data = await news(searchQuery, `${source.id}`);
-        displayNews(data);
-    }
-})
-
-document.getElementById("Politics").addEventListener("click", async ()=>{
+document.getElementById("Politics").addEventListener("click", async () => {
     const searchQuery = document.getElementById("textbar").value;
 
     if (searchQuery === "") {
         const data = await news("politics");
         displayNews(data);
-    } 
-    else {
+    } else {
         const data = await news(searchQuery, "politics");
         displayNews(data);
-
     }
-})
+});
 
-document.getElementById("Sports").addEventListener("click", async ()=>{
+document.getElementById("Sports").addEventListener("click", async () => {
     const searchQuery = document.getElementById("textbar").value;
 
     if (searchQuery === "") {
         const data = await news("Sports");
         displayNews(data);
-    } 
-    else {
+    } else {
         const data = await news(searchQuery, "Sports");
         displayNews(data);
-
     }
-})
+});
 
-document.getElementById("Health").addEventListener("click", async ()=>{
+document.getElementById("Health").addEventListener("click", async () => {
     const searchQuery = document.getElementById("textbar").value;
 
     if (searchQuery === "") {
         const data = await news("Health");
         displayNews(data);
-    } 
-    else {
+    } else {
         const data = await news(searchQuery, "Health");
         displayNews(data);
-
     }
-})
-
+});

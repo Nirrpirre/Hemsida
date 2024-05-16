@@ -6,10 +6,10 @@ body {
   display: flex;
 }
 form {
-    width: 350px;
-    position: absolute;
-    left: 70%;
-    top: 30%;
+  width: 350px;
+  position: absolute;
+  left: 70%;
+  top: 30%;
 }
 div {
   /* margin-left: 70%;
@@ -32,8 +32,8 @@ input {
   margin: 20px;
 }
 
-img{
-    width: 40%;
-    margin-top: 20%;
-    margin-left: 15%;
+img {
+  width: 40%;
+  margin-top: 20%;
+  margin-left: 15%;
 }
